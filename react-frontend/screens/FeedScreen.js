@@ -26,9 +26,6 @@ let state = {
 }
 
 export default class FeedScreen extends React.Component {
-  static navigationOptions = {
-    title: 'THE FEEEEEEED',
-  };
   render() {
     const { navigation } = this.props;
 

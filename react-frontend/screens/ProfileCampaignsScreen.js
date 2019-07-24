@@ -43,10 +43,9 @@ let state = {
 }
 
 export default class ProfileCampaignsScreen extends React.Component {
-  static navigationOptions = {
-    title: `Profile - Campaigns`,
-  };
-
+  goToDetails = () => {
+    this.props.navigation.navigate('ProfileDetails', {orgId: org.id,})
+  }
   render() {
     const id = this.props.navigation.getParam('orgId', state.currentUserId);
     const org = state.orgs.filter(el => el.id === id)[0];
@@ -55,16 +54,8 @@ export default class ProfileCampaignsScreen extends React.Component {
         <Text>Our name: {org.name}</Text>
         <Text>About us: {org.about}</Text>
         <View style={{ flexDirection: "row" }}>
-          <Button
-            title="Campaigns"
-          />
-          <Button
-            title="Details"
-            onPress={() =>
-              this.props.navigation.navigate('ProfileDetails', {
-                orgId: org.id,
-              })}
-          />
+          <Button title="Campaigns" />
+          <Button title="Details" onPress={this.goToDetails} />
         </View>
         {state.campaigns.filter(el => el.orgId === id).map(campaign => {
           return <Text key={campaign.id}>{campaign.name}</Text>
